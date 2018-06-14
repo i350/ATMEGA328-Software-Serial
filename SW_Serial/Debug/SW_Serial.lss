@@ -1,0 +1,712 @@
+
+SW_Serial.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000004  00800100  000003f4  00000488  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000003f4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000069  00800104  00800104  0000048c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000048c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004bc  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000078  00000000  00000000  000004fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000ad6  00000000  00000000  00000574  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000084f  00000000  00000000  0000104a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000062b  00000000  00000000  00001899  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000012c  00000000  00000000  00001ec4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005ad  00000000  00000000  00001ff0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000026a  00000000  00000000  0000259d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000058  00000000  00000000  00002807  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 15 01 	jmp	0x22a	; 0x22a <__vector_2>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 3b 01 	jmp	0x276	; 0x276 <__vector_7>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e4 ef       	ldi	r30, 0xF4	; 244
+  7c:	f3 e0       	ldi	r31, 0x03	; 3
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a4 30       	cpi	r26, 0x04	; 4
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a4 e0       	ldi	r26, 0x04	; 4
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ad 36       	cpi	r26, 0x6D	; 109
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 53 00 	call	0xa6	; 0xa6 <main>
+  9e:	0c 94 f8 01 	jmp	0x3f0	; 0x3f0 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <main>:
+// Standard settings:
+// RX -> Pin 3
+// TX -> Pin 4
+
+int main(void)
+{
+  a6:	cf 93       	push	r28
+  a8:	df 93       	push	r29
+  aa:	1f 92       	push	r1
+  ac:	cd b7       	in	r28, 0x3d	; 61
+  ae:	de b7       	in	r29, 0x3e	; 62
+	sei();
+  b0:	78 94       	sei
+	SWseriale_begin(); // Initialize INT1, Timer2, Pin 3 (Input, Pull-up) and Pin 4 (Output)
+  b2:	0e 94 74 00 	call	0xe8	; 0xe8 <SWseriale_begin>
+	
+	SWseriale_write("HI",2);
+  b6:	62 e0       	ldi	r22, 0x02	; 2
+  b8:	80 e0       	ldi	r24, 0x00	; 0
+  ba:	91 e0       	ldi	r25, 0x01	; 1
+  bc:	0e 94 ed 00 	call	0x1da	; 0x1da <SWseriale_write>
+  c0:	08 c0       	rjmp	.+16     	; 0xd2 <main+0x2c>
+	
+    /* Replace with your application code */
+    while (1) 
+    {  
+	while (SWseriale_available()){ // Checks if any character has been received
+	    uint8_t temp = SWseriale_read(); // Reads one character from SWseriale received data buffer
+  c2:	0e 94 99 00 	call	0x132	; 0x132 <SWseriale_read>
+  c6:	89 83       	std	Y+1, r24	; 0x01
+	    SWseriale_write(&temp, 1); // Send one character using SWseriale
+  c8:	61 e0       	ldi	r22, 0x01	; 1
+  ca:	ce 01       	movw	r24, r28
+  cc:	01 96       	adiw	r24, 0x01	; 1
+  ce:	0e 94 ed 00 	call	0x1da	; 0x1da <SWseriale_write>
+	SWseriale_write("HI",2);
+	
+    /* Replace with your application code */
+    while (1) 
+    {  
+	while (SWseriale_available()){ // Checks if any character has been received
+  d2:	0e 94 8e 00 	call	0x11c	; 0x11c <SWseriale_available>
+  d6:	81 11       	cpse	r24, r1
+  d8:	f4 cf       	rjmp	.-24     	; 0xc2 <main+0x1c>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  da:	8f e3       	ldi	r24, 0x3F	; 63
+  dc:	9c e9       	ldi	r25, 0x9C	; 156
+  de:	01 97       	sbiw	r24, 0x01	; 1
+  e0:	f1 f7       	brne	.-4      	; 0xde <main+0x38>
+  e2:	00 c0       	rjmp	.+0      	; 0xe4 <main+0x3e>
+  e4:	00 00       	nop
+  e6:	f5 cf       	rjmp	.-22     	; 0xd2 <main+0x2c>
+
+000000e8 <SWseriale_begin>:
+
+// FUNCTIONS
+
+bool SWseriale_begin(){
+
+	SWseriale_mode = IDLE_MODE; // Communication is set on idling
+  e8:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <__data_end>
+
+	// RX and TX pins settings
+	DDRD &= ~(1 << RX_PIN); // Port D pin 3 set as Input (INT1)
+  ec:	53 98       	cbi	0x0a, 3	; 10
+	DDRD |= (1 << TX_PIN); // Port D pin 4 set as Output
+  ee:	54 9a       	sbi	0x0a, 4	; 10
+	PORTD |= (1<< RX_PIN); // Pullup resistor activated on Port D pin 3
+  f0:	5b 9a       	sbi	0x0b, 3	; 11
+	PORTD |= (1<< TX_PIN); // Port D pin 4 set to "idle" (5V)
+  f2:	5c 9a       	sbi	0x0b, 4	; 11
+
+	// Timer 2 settings
+	TCCR2A = _BV(WGM21); // CTC mode (WGM21 = 1, WGM20 = 0)
+  f4:	82 e0       	ldi	r24, 0x02	; 2
+  f6:	80 93 b0 00 	sts	0x00B0, r24	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7e00b0>
+	TCCR2B = 0; // timer stopped (no prescaler is set)
+  fa:	10 92 b1 00 	sts	0x00B1, r1	; 0x8000b1 <__TEXT_REGION_LENGTH__+0x7e00b1>
+	TCNT2 = 0; // counter is set to 0
+  fe:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__TEXT_REGION_LENGTH__+0x7e00b2>
+	TIMSK2 = _BV(OCIE2A); // sets the timer overflow interrupt enable bit on compare
+ 102:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <__TEXT_REGION_LENGTH__+0x7e0070>
+
+	// RX pin interrupt settings
+	EICRA &= ~(_BV(ISC10)); // External Interrupt 1 falling edge (ISC10 = 0)
+ 106:	e9 e6       	ldi	r30, 0x69	; 105
+ 108:	f0 e0       	ldi	r31, 0x00	; 0
+ 10a:	80 81       	ld	r24, Z
+ 10c:	8b 7f       	andi	r24, 0xFB	; 251
+ 10e:	80 83       	st	Z, r24
+	EICRA |= _BV(ISC11); // External Interrupt 1 falling edge (ISC11 = 1)
+ 110:	80 81       	ld	r24, Z
+ 112:	88 60       	ori	r24, 0x08	; 8
+ 114:	80 83       	st	Z, r24
+	EIFR |=  _BV(INTF1); // Clears interrupt 1 request (just to make sure)
+ 116:	e1 9a       	sbi	0x1c, 1	; 28
+	EIMSK |= _BV(INT1); // Enable Interrupt 1 (waiting for message)
+ 118:	e9 9a       	sbi	0x1d, 1	; 29
+
+}
+ 11a:	08 95       	ret
+
+0000011c <SWseriale_available>:
+
+// Checks if there is any received data available (returns the number of available bytes, which are the one not already processed by Main program)
+uint8_t SWseriale_available(){
+
+  uint8_t temp_last_log_item = SWseriale_recv_buffer_last_log_item; // for buffering, to prevent changes from interrupt
+ 11c:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <SWseriale_recv_buffer_last_log_item>
+  uint8_t temp_last_pro_item = SWseriale_recv_buffer_last_pro_item; // for buffering, to prevent changes from interrupt
+ 120:	90 91 09 01 	lds	r25, 0x0109	; 0x800109 <SWseriale_recv_buffer_last_pro_item>
+  if (temp_last_log_item >= temp_last_pro_item){ // before buffer index rollover
+ 124:	89 17       	cp	r24, r25
+ 126:	10 f0       	brcs	.+4      	; 0x12c <SWseriale_available+0x10>
+    return (temp_last_log_item - temp_last_pro_item);
+ 128:	89 1b       	sub	r24, r25
+ 12a:	08 95       	ret
+  }
+  else{ // after buffer index rollover
+    return (SWSERIALE_RECV_BUF_SIZE - temp_last_pro_item + temp_last_log_item);
+ 12c:	80 5c       	subi	r24, 0xC0	; 192
+ 12e:	89 1b       	sub	r24, r25
+  }
+
+}
+ 130:	08 95       	ret
+
+00000132 <SWseriale_read>:
+
+// Returns 1 byte read (the first byte acquired which has not been processed yet by Main program)
+uint8_t SWseriale_read(){
+  
+  SWseriale_recv_buffer_last_pro_item++;
+ 132:	80 91 09 01 	lds	r24, 0x0109	; 0x800109 <SWseriale_recv_buffer_last_pro_item>
+ 136:	8f 5f       	subi	r24, 0xFF	; 255
+ 138:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <SWseriale_recv_buffer_last_pro_item>
+  if (SWseriale_recv_buffer_last_pro_item == SWSERIALE_RECV_BUF_SIZE) SWseriale_recv_buffer_last_pro_item=0; // rollover
+ 13c:	80 91 09 01 	lds	r24, 0x0109	; 0x800109 <SWseriale_recv_buffer_last_pro_item>
+ 140:	80 34       	cpi	r24, 0x40	; 64
+ 142:	11 f4       	brne	.+4      	; 0x148 <SWseriale_read+0x16>
+ 144:	10 92 09 01 	sts	0x0109, r1	; 0x800109 <SWseriale_recv_buffer_last_pro_item>
+  return SWseriale_recv_buffer[SWseriale_recv_buffer_last_pro_item];
+ 148:	e0 91 09 01 	lds	r30, 0x0109	; 0x800109 <SWseriale_recv_buffer_last_pro_item>
+ 14c:	f0 e0       	ldi	r31, 0x00	; 0
+ 14e:	e4 5d       	subi	r30, 0xD4	; 212
+ 150:	fe 4f       	sbci	r31, 0xFE	; 254
+ 152:	80 81       	ld	r24, Z
+  
+}
+ 154:	08 95       	ret
+
+00000156 <SWseriale_listen>:
+
+// Prepares the serial bus for receiving (IDLE status, 5V). Timer2 is set
+void SWseriale_listen(SWseriale_mode_enum listening_mode){
+
+	// Only IDLE_MODE or RECV_MODE are accepted
+	if ((listening_mode != IDLE_MODE) && (listening_mode != RECV_MODE)) listening_mode = IDLE_MODE; // Standard value (not possible to have, for example, SEND_MODE)
+ 156:	82 30       	cpi	r24, 0x02	; 2
+ 158:	10 f4       	brcc	.+4      	; 0x15e <SWseriale_listen+0x8>
+
+	if (listening_mode == IDLE_MODE) { // In case of IDLE_MODE, the counter has to stop (no need to send). In case of SEND_MODE, the counter has to continue for some bits
+ 15a:	81 11       	cpse	r24, r1
+ 15c:	04 c0       	rjmp	.+8      	; 0x166 <SWseriale_listen+0x10>
+		TCCR2B = 0; // Timer 2 stopped
+ 15e:	10 92 b1 00 	sts	0x00B1, r1	; 0x8000b1 <__TEXT_REGION_LENGTH__+0x7e00b1>
+		EIFR |=  _BV(INTF1); // Clears interrupt 1 request (just to make sure)
+ 162:	e1 9a       	sbi	0x1c, 1	; 28
+ 164:	80 e0       	ldi	r24, 0x00	; 0
+	}
+
+	SWseriale_mode = listening_mode; // ready for next task (IDLE_MODE or RECV_MODE)
+ 166:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <__data_end>
+	EIMSK |= _BV(INT1); // Enable Interrupt  again (wait for next byte from SWseriale)
+ 16a:	e9 9a       	sbi	0x1d, 1	; 29
+ 16c:	08 95       	ret
+
+0000016e <SWseriale_prepareToSend>:
+// This function checks, at first, if any byte is requested to be sent.
+// In positive case, it loads the byte to be sent, then remove the INT pin interrupt, set the timer, and finally set the bit to 0 (Start bit)
+bool SWseriale_prepareToSend(){
+	
+	// Entry conditions
+	if (SWseriale_send_buffer_to_send_now == SWseriale_send_buffer_last_added) return false; // no bytes required to be sent
+ 16e:	90 91 06 01 	lds	r25, 0x0106	; 0x800106 <SWseriale_send_buffer_to_send_now>
+ 172:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <SWseriale_send_buffer_last_added>
+ 176:	98 17       	cp	r25, r24
+ 178:	61 f1       	breq	.+88     	; 0x1d2 <SWseriale_prepareToSend+0x64>
+	if ((!FORCE_SEND) && (SWseriale_mode != IDLE_MODE)) return false; // Serial bus is not in IDLE condition (it is either in SEND or RECV), so it is not possible to send due to busy condition
+ 17a:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <__data_end>
+ 17e:	81 11       	cpse	r24, r1
+ 180:	2a c0       	rjmp	.+84     	; 0x1d6 <SWseriale_prepareToSend+0x68>
+
+	// Initial setup for status and byte to be sent
+	EIMSK &= ~(_BV(INT1)); // disables INT1 interrupt (no reception allowed when sending message - half duplex)
+ 182:	e9 98       	cbi	0x1d, 1	; 29
+	SWseriale_mode = SEND_MODE; // status set to SEND
+ 184:	82 e0       	ldi	r24, 0x02	; 2
+ 186:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <__data_end>
+	send_byte_buffer = SWseriale_send_buffer[SWseriale_send_buffer_to_send_now]; // sets the byte to be sent
+ 18a:	e0 91 06 01 	lds	r30, 0x0106	; 0x800106 <SWseriale_send_buffer_to_send_now>
+ 18e:	f0 e0       	ldi	r31, 0x00	; 0
+ 190:	e5 5f       	subi	r30, 0xF5	; 245
+ 192:	fe 4f       	sbci	r31, 0xFE	; 254
+ 194:	80 81       	ld	r24, Z
+ 196:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <send_byte_buffer>
+	SWseriale_send_buffer_to_send_now++; // current index increase, one more character will be sent soon
+ 19a:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <SWseriale_send_buffer_to_send_now>
+ 19e:	8f 5f       	subi	r24, 0xFF	; 255
+ 1a0:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <SWseriale_send_buffer_to_send_now>
+	if (SWseriale_send_buffer_to_send_now == SWSERIALE_SEND_BUF_SIZE) SWseriale_send_buffer_to_send_now = 0; // rollover
+ 1a4:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <SWseriale_send_buffer_to_send_now>
+ 1a8:	80 32       	cpi	r24, 0x20	; 32
+ 1aa:	11 f4       	brne	.+4      	; 0x1b0 <SWseriale_prepareToSend+0x42>
+ 1ac:	10 92 06 01 	sts	0x0106, r1	; 0x800106 <SWseriale_send_buffer_to_send_now>
+	send_bit_num = 0; // Start from bit 0
+ 1b0:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <send_bit_num>
+
+	// Setting Timer 2 to create an interrupt once every 1 bit (needed for sending each of the 10 bits)
+	TCCR2B &= ~(_BV(CS22) | _BV(CS21) | _BV(CS20)); // Disables the timer counting (just to make sure)
+ 1b4:	e1 eb       	ldi	r30, 0xB1	; 177
+ 1b6:	f0 e0       	ldi	r31, 0x00	; 0
+ 1b8:	80 81       	ld	r24, Z
+ 1ba:	88 7f       	andi	r24, 0xF8	; 248
+ 1bc:	80 83       	st	Z, r24
+	TCNT2 = 0; // counter is set to 0
+ 1be:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__TEXT_REGION_LENGTH__+0x7e00b2>
+	OCR2A = ONE_BIT_CYLES; // 1 bit time	// counter TOP value
+ 1c2:	80 ed       	ldi	r24, 0xD0	; 208
+ 1c4:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7e00b3>
+	TCCR2B = _BV(CS21);  // Starts the timer // CTC (GWM22 = 0) Prescaler 1/8, 0.5us (CS22 = 0, CS21 = 1, CS20 = 0)
+ 1c8:	82 e0       	ldi	r24, 0x02	; 2
+ 1ca:	80 83       	st	Z, r24
+
+	// Port D pin 4 (TX) set to LOW (0) -> Start condition (5V -> 0V)
+	PORTD &= ~(1 << TX_PIN); // Sets Port D bit 4 (TX) to 0 (Start condition)
+ 1cc:	5c 98       	cbi	0x0b, 4	; 11
+
+	return true; // preparation finished correctly
+ 1ce:	81 e0       	ldi	r24, 0x01	; 1
+ 1d0:	08 95       	ret
+// This function checks, at first, if any byte is requested to be sent.
+// In positive case, it loads the byte to be sent, then remove the INT pin interrupt, set the timer, and finally set the bit to 0 (Start bit)
+bool SWseriale_prepareToSend(){
+	
+	// Entry conditions
+	if (SWseriale_send_buffer_to_send_now == SWseriale_send_buffer_last_added) return false; // no bytes required to be sent
+ 1d2:	80 e0       	ldi	r24, 0x00	; 0
+ 1d4:	08 95       	ret
+	if ((!FORCE_SEND) && (SWseriale_mode != IDLE_MODE)) return false; // Serial bus is not in IDLE condition (it is either in SEND or RECV), so it is not possible to send due to busy condition
+ 1d6:	80 e0       	ldi	r24, 0x00	; 0
+
+	// Port D pin 4 (TX) set to LOW (0) -> Start condition (5V -> 0V)
+	PORTD &= ~(1 << TX_PIN); // Sets Port D bit 4 (TX) to 0 (Start condition)
+
+	return true; // preparation finished correctly
+}
+ 1d8:	08 95       	ret
+
+000001da <SWseriale_write>:
+  return SWseriale_recv_buffer[SWseriale_recv_buffer_last_pro_item];
+  
+}
+
+// Sends the "data_array" of size "data_size" on SWseriale TX pin
+bool SWseriale_write(uint8_t* data_array, uint8_t data_size){
+ 1da:	ac 01       	movw	r20, r24
+
+  // Entry conditions
+  if ((data_size == 0) || (data_size > SWSERIALE_SEND_BUF_SIZE)) return false; // size to send is not acceptable
+ 1dc:	9f ef       	ldi	r25, 0xFF	; 255
+ 1de:	96 0f       	add	r25, r22
+ 1e0:	90 32       	cpi	r25, 0x20	; 32
+ 1e2:	08 f5       	brcc	.+66     	; 0x226 <SWseriale_write+0x4c>
+  
+  // Copies the data array in the sending buffer, so that the Main program can modify the array
+  for (uint8_t i=0; i<data_size; i++){
+ 1e4:	66 23       	and	r22, r22
+ 1e6:	e1 f0       	breq	.+56     	; 0x220 <SWseriale_write+0x46>
+ 1e8:	da 01       	movw	r26, r20
+ 1ea:	29 2f       	mov	r18, r25
+ 1ec:	30 e0       	ldi	r19, 0x00	; 0
+ 1ee:	2f 5f       	subi	r18, 0xFF	; 255
+ 1f0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1f2:	24 0f       	add	r18, r20
+ 1f4:	35 1f       	adc	r19, r21
+    SWseriale_send_buffer[SWseriale_send_buffer_last_added] = data_array[i];
+ 1f6:	e0 91 07 01 	lds	r30, 0x0107	; 0x800107 <SWseriale_send_buffer_last_added>
+ 1fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 1fc:	9d 91       	ld	r25, X+
+ 1fe:	e5 5f       	subi	r30, 0xF5	; 245
+ 200:	fe 4f       	sbci	r31, 0xFE	; 254
+ 202:	90 83       	st	Z, r25
+	SWseriale_send_buffer_last_added++;
+ 204:	90 91 07 01 	lds	r25, 0x0107	; 0x800107 <SWseriale_send_buffer_last_added>
+ 208:	9f 5f       	subi	r25, 0xFF	; 255
+ 20a:	90 93 07 01 	sts	0x0107, r25	; 0x800107 <SWseriale_send_buffer_last_added>
+	if (SWseriale_send_buffer_last_added == SWSERIALE_SEND_BUF_SIZE) SWseriale_send_buffer_last_added = 0; // rollover
+ 20e:	90 91 07 01 	lds	r25, 0x0107	; 0x800107 <SWseriale_send_buffer_last_added>
+ 212:	90 32       	cpi	r25, 0x20	; 32
+ 214:	11 f4       	brne	.+4      	; 0x21a <SWseriale_write+0x40>
+ 216:	10 92 07 01 	sts	0x0107, r1	; 0x800107 <SWseriale_send_buffer_last_added>
+
+  // Entry conditions
+  if ((data_size == 0) || (data_size > SWSERIALE_SEND_BUF_SIZE)) return false; // size to send is not acceptable
+  
+  // Copies the data array in the sending buffer, so that the Main program can modify the array
+  for (uint8_t i=0; i<data_size; i++){
+ 21a:	a2 17       	cp	r26, r18
+ 21c:	b3 07       	cpc	r27, r19
+ 21e:	59 f7       	brne	.-42     	; 0x1f6 <SWseriale_write+0x1c>
+    SWseriale_send_buffer[SWseriale_send_buffer_last_added] = data_array[i];
+	SWseriale_send_buffer_last_added++;
+	if (SWseriale_send_buffer_last_added == SWSERIALE_SEND_BUF_SIZE) SWseriale_send_buffer_last_added = 0; // rollover
+  }
+
+  return SWseriale_prepareToSend(); // This function returns "true" in case it was possible to initialize the message sending, "false" in case it was not possible (example: bus is already in SEND, or it is in RECV state)
+ 220:	0e 94 b7 00 	call	0x16e	; 0x16e <SWseriale_prepareToSend>
+ 224:	08 95       	ret
+
+// Sends the "data_array" of size "data_size" on SWseriale TX pin
+bool SWseriale_write(uint8_t* data_array, uint8_t data_size){
+
+  // Entry conditions
+  if ((data_size == 0) || (data_size > SWSERIALE_SEND_BUF_SIZE)) return false; // size to send is not acceptable
+ 226:	80 e0       	ldi	r24, 0x00	; 0
+	SWseriale_send_buffer_last_added++;
+	if (SWseriale_send_buffer_last_added == SWSERIALE_SEND_BUF_SIZE) SWseriale_send_buffer_last_added = 0; // rollover
+  }
+
+  return SWseriale_prepareToSend(); // This function returns "true" in case it was possible to initialize the message sending, "false" in case it was not possible (example: bus is already in SEND, or it is in RECV state)
+}
+ 228:	08 95       	ret
+
+0000022a <__vector_2>:
+
+
+// INTERRUPTS MANAGEMENT
+
+// Called when a start bit is detected (5V -> 0V), which means that a byte is about to be received
+ISR(INT1_vect) {
+ 22a:	1f 92       	push	r1
+ 22c:	0f 92       	push	r0
+ 22e:	0f b6       	in	r0, 0x3f	; 63
+ 230:	0f 92       	push	r0
+ 232:	11 24       	eor	r1, r1
+ 234:	8f 93       	push	r24
+ 236:	ef 93       	push	r30
+ 238:	ff 93       	push	r31
+	if (SWseriale_mode != SEND_MODE){ // state is IDLE or RECV (i.e. not sending)
+ 23a:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <__data_end>
+ 23e:	82 30       	cpi	r24, 0x02	; 2
+ 240:	91 f0       	breq	.+36     	; 0x266 <__vector_2+0x3c>
+		
+		// Disable INT1 interrupt
+		EIMSK &= ~(_BV(INT1)); // disables INT1 interrupt (not needed anymore until this byte reading is finished)
+ 242:	e9 98       	cbi	0x1d, 1	; 29
+		
+		SWseriale_mode = RECV_MODE; // receiving byte
+ 244:	81 e0       	ldi	r24, 0x01	; 1
+ 246:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <__data_end>
+		recv_bit_num=0; // received bits counter reset to 0
+ 24a:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <recv_bit_num>
+
+		// Configures Timer 2 for start bit sampling
+		TCCR2B &= ~(_BV(CS22) | _BV(CS21) | _BV(CS20)); // Disables the timer counting (just to make sure)
+ 24e:	e1 eb       	ldi	r30, 0xB1	; 177
+ 250:	f0 e0       	ldi	r31, 0x00	; 0
+ 252:	80 81       	ld	r24, Z
+ 254:	88 7f       	andi	r24, 0xF8	; 248
+ 256:	80 83       	st	Z, r24
+		TCNT2 = 0; // counter is set to 0
+ 258:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__TEXT_REGION_LENGTH__+0x7e00b2>
+		OCR2A = SAMPLING_DELAY_CYLES; // about 0.5 bit time, in order to sample in the middle of the bit, to avoid noise	// counter TOP value
+ 25c:	88 e6       	ldi	r24, 0x68	; 104
+ 25e:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7e00b3>
+		TCCR2B = _BV(CS21);  // Starts the timer // CTC (GWM22 = 0) Prescaler 1/8, 0.5us (CS22 = 0, CS21 = 1, CS20 = 0)
+ 262:	82 e0       	ldi	r24, 0x02	; 2
+ 264:	80 83       	st	Z, r24
+	}
+}
+ 266:	ff 91       	pop	r31
+ 268:	ef 91       	pop	r30
+ 26a:	8f 91       	pop	r24
+ 26c:	0f 90       	pop	r0
+ 26e:	0f be       	out	0x3f, r0	; 63
+ 270:	0f 90       	pop	r0
+ 272:	1f 90       	pop	r1
+ 274:	18 95       	reti
+
+00000276 <__vector_7>:
+
+// This timer is activated after INT1 (start bit, 5V -> 0V) interrupt happens, or when sending byte is requested
+ISR(TIMER2_COMPA_vect) {
+ 276:	1f 92       	push	r1
+ 278:	0f 92       	push	r0
+ 27a:	0f b6       	in	r0, 0x3f	; 63
+ 27c:	0f 92       	push	r0
+ 27e:	11 24       	eor	r1, r1
+ 280:	2f 93       	push	r18
+ 282:	3f 93       	push	r19
+ 284:	4f 93       	push	r20
+ 286:	5f 93       	push	r21
+ 288:	6f 93       	push	r22
+ 28a:	7f 93       	push	r23
+ 28c:	8f 93       	push	r24
+ 28e:	9f 93       	push	r25
+ 290:	af 93       	push	r26
+ 292:	bf 93       	push	r27
+ 294:	ef 93       	push	r30
+ 296:	ff 93       	push	r31
+
+	// Byte receiving case
+	if (SWseriale_mode == RECV_MODE){
+ 298:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <__data_end>
+ 29c:	81 30       	cpi	r24, 0x01	; 1
+ 29e:	09 f0       	breq	.+2      	; 0x2a2 <__vector_7+0x2c>
+ 2a0:	67 c0       	rjmp	.+206    	; 0x370 <__vector_7+0xfa>
+		if (recv_bit_num == 0) { // At the moment I am in the middle of start bit (0), need to sample in the middle of bit 1 next (distance is 1 bit)
+ 2a2:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <recv_bit_num>
+ 2a6:	81 11       	cpse	r24, r1
+ 2a8:	09 c0       	rjmp	.+18     	; 0x2bc <__vector_7+0x46>
+			if (PIND & _BV(RX_PIN)){ // Need to make sure that the bit is 0 (=0V)
+ 2aa:	4b 9b       	sbis	0x09, 3	; 9
+ 2ac:	03 c0       	rjmp	.+6      	; 0x2b4 <__vector_7+0x3e>
+				SWseriale_listen(IDLE_MODE); // re-initialize receiving, in case external input was a mistake (this bit should be =0V because it is Start Bit)
+ 2ae:	0e 94 ab 00 	call	0x156	; 0x156 <SWseriale_listen>
+				return;
+ 2b2:	8d c0       	rjmp	.+282    	; 0x3ce <__vector_7+0x158>
+			}
+			OCR2A = ONE_BIT_CYLES; // 1 bit time (needed to jump from one bit to the next)
+ 2b4:	80 ed       	ldi	r24, 0xD0	; 208
+ 2b6:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7e00b3>
+ 2ba:	54 c0       	rjmp	.+168    	; 0x364 <__vector_7+0xee>
+		}
+		else if ((recv_bit_num >= 1) && (recv_bit_num < 9)){ // Data bits (1-8)
+ 2bc:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <recv_bit_num>
+ 2c0:	88 23       	and	r24, r24
+ 2c2:	41 f1       	breq	.+80     	; 0x314 <__vector_7+0x9e>
+ 2c4:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <recv_bit_num>
+ 2c8:	89 30       	cpi	r24, 0x09	; 9
+ 2ca:	20 f5       	brcc	.+72     	; 0x314 <__vector_7+0x9e>
+			if (PIND & _BV(RX_PIN)){ // RX pin bit = 1
+ 2cc:	4b 9b       	sbis	0x09, 3	; 9
+ 2ce:	10 c0       	rjmp	.+32     	; 0x2f0 <__vector_7+0x7a>
+				recv_byte_buffer |= 1 << (recv_bit_num - 1); // stores the value of the bit read, inside the buffer
+ 2d0:	20 91 08 01 	lds	r18, 0x0108	; 0x800108 <recv_bit_num>
+ 2d4:	30 91 2b 01 	lds	r19, 0x012B	; 0x80012b <recv_byte_buffer>
+ 2d8:	21 50       	subi	r18, 0x01	; 1
+ 2da:	81 e0       	ldi	r24, 0x01	; 1
+ 2dc:	90 e0       	ldi	r25, 0x00	; 0
+ 2de:	02 c0       	rjmp	.+4      	; 0x2e4 <__vector_7+0x6e>
+ 2e0:	88 0f       	add	r24, r24
+ 2e2:	99 1f       	adc	r25, r25
+ 2e4:	2a 95       	dec	r18
+ 2e6:	e2 f7       	brpl	.-8      	; 0x2e0 <__vector_7+0x6a>
+ 2e8:	83 2b       	or	r24, r19
+ 2ea:	80 93 2b 01 	sts	0x012B, r24	; 0x80012b <recv_byte_buffer>
+ 2ee:	3a c0       	rjmp	.+116    	; 0x364 <__vector_7+0xee>
+			}else{ // bit = 0
+				recv_byte_buffer &= ~(1 << (recv_bit_num - 1)); // stores the value of the bit read, inside the buffer
+ 2f0:	20 91 08 01 	lds	r18, 0x0108	; 0x800108 <recv_bit_num>
+ 2f4:	30 91 2b 01 	lds	r19, 0x012B	; 0x80012b <recv_byte_buffer>
+ 2f8:	21 50       	subi	r18, 0x01	; 1
+ 2fa:	81 e0       	ldi	r24, 0x01	; 1
+ 2fc:	90 e0       	ldi	r25, 0x00	; 0
+ 2fe:	02 c0       	rjmp	.+4      	; 0x304 <__vector_7+0x8e>
+ 300:	88 0f       	add	r24, r24
+ 302:	99 1f       	adc	r25, r25
+ 304:	2a 95       	dec	r18
+ 306:	e2 f7       	brpl	.-8      	; 0x300 <__vector_7+0x8a>
+ 308:	80 95       	com	r24
+ 30a:	90 95       	com	r25
+ 30c:	83 23       	and	r24, r19
+ 30e:	80 93 2b 01 	sts	0x012B, r24	; 0x80012b <recv_byte_buffer>
+ 312:	28 c0       	rjmp	.+80     	; 0x364 <__vector_7+0xee>
+			}
+		}
+		else if (recv_bit_num == 9){ // when all 10 bits (0-9) have been received (all byte is completed), byte has to be added to the buffer
+ 314:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <recv_bit_num>
+ 318:	89 30       	cpi	r24, 0x09	; 9
+ 31a:	b9 f4       	brne	.+46     	; 0x34a <__vector_7+0xd4>
+			SWseriale_recv_buffer_last_log_item++; // increase the buffer item counter
+ 31c:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <SWseriale_recv_buffer_last_log_item>
+ 320:	8f 5f       	subi	r24, 0xFF	; 255
+ 322:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <SWseriale_recv_buffer_last_log_item>
+			if (SWseriale_recv_buffer_last_log_item == SWSERIALE_RECV_BUF_SIZE) SWseriale_recv_buffer_last_log_item=0; // rollover
+ 326:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <SWseriale_recv_buffer_last_log_item>
+ 32a:	80 34       	cpi	r24, 0x40	; 64
+ 32c:	11 f4       	brne	.+4      	; 0x332 <__vector_7+0xbc>
+ 32e:	10 92 0a 01 	sts	0x010A, r1	; 0x80010a <SWseriale_recv_buffer_last_log_item>
+			SWseriale_recv_buffer[SWseriale_recv_buffer_last_log_item]=recv_byte_buffer; // adds the single received byte to the received data buffer
+ 332:	e0 91 0a 01 	lds	r30, 0x010A	; 0x80010a <SWseriale_recv_buffer_last_log_item>
+ 336:	f0 e0       	ldi	r31, 0x00	; 0
+ 338:	80 91 2b 01 	lds	r24, 0x012B	; 0x80012b <recv_byte_buffer>
+ 33c:	e4 5d       	subi	r30, 0xD4	; 212
+ 33e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 340:	80 83       	st	Z, r24
+			SWseriale_listen(RECV_MODE); // return in idle condition, keep the bus in "RECV" state a bit more (to allow the next byte to be received, also), so that, in case "FORCE_SEND=0" is defined, the send operation will be skipped
+ 342:	81 e0       	ldi	r24, 0x01	; 1
+ 344:	0e 94 ab 00 	call	0x156	; 0x156 <SWseriale_listen>
+ 348:	0d c0       	rjmp	.+26     	; 0x364 <__vector_7+0xee>
+		}
+		else if (recv_bit_num == 9+BITS_WAITING_AFTER_RECV){ // the bus is kept in "RECV" state for a little bit more, to allow the next byte to arrive
+ 34a:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <recv_bit_num>
+ 34e:	8e 30       	cpi	r24, 0x0E	; 14
+ 350:	49 f4       	brne	.+18     	; 0x364 <__vector_7+0xee>
+			SWseriale_mode = IDLE_MODE; // Set the bus in IDLE mode (so that, in case FORCE_SEND=0, there is no trouble, the check passes)
+ 352:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <__data_end>
+			if (!SWseriale_prepareToSend()) SWseriale_listen(IDLE_MODE); // Checks if any byte has to be sent (this is necessary in case any byte to be sent is pending the end of reception state). If not, timer is stopped.
+ 356:	0e 94 b7 00 	call	0x16e	; 0x16e <SWseriale_prepareToSend>
+ 35a:	81 11       	cpse	r24, r1
+ 35c:	38 c0       	rjmp	.+112    	; 0x3ce <__vector_7+0x158>
+ 35e:	0e 94 ab 00 	call	0x156	; 0x156 <SWseriale_listen>
+ 362:	35 c0       	rjmp	.+106    	; 0x3ce <__vector_7+0x158>
+			return;
+		}
+		recv_bit_num++;
+ 364:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <recv_bit_num>
+ 368:	8f 5f       	subi	r24, 0xFF	; 255
+ 36a:	80 93 08 01 	sts	0x0108, r24	; 0x800108 <recv_bit_num>
+ 36e:	2f c0       	rjmp	.+94     	; 0x3ce <__vector_7+0x158>
+	}
+	
+	// Byte sending case
+	else if (SWseriale_mode == SEND_MODE){
+ 370:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <__data_end>
+ 374:	82 30       	cpi	r24, 0x02	; 2
+ 376:	59 f5       	brne	.+86     	; 0x3ce <__vector_7+0x158>
+		if ((send_bit_num >= 0) && (send_bit_num < 8)){ // Bits 0-7 (Data)
+ 378:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <send_bit_num>
+ 37c:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <send_bit_num>
+ 380:	88 30       	cpi	r24, 0x08	; 8
+ 382:	80 f4       	brcc	.+32     	; 0x3a4 <__vector_7+0x12e>
+			if (send_byte_buffer & (1 << send_bit_num)){ // bit = 1
+ 384:	80 91 6c 01 	lds	r24, 0x016C	; 0x80016c <send_byte_buffer>
+ 388:	20 91 05 01 	lds	r18, 0x0105	; 0x800105 <send_bit_num>
+ 38c:	90 e0       	ldi	r25, 0x00	; 0
+ 38e:	02 c0       	rjmp	.+4      	; 0x394 <__vector_7+0x11e>
+ 390:	95 95       	asr	r25
+ 392:	87 95       	ror	r24
+ 394:	2a 95       	dec	r18
+ 396:	e2 f7       	brpl	.-8      	; 0x390 <__vector_7+0x11a>
+ 398:	80 ff       	sbrs	r24, 0
+ 39a:	02 c0       	rjmp	.+4      	; 0x3a0 <__vector_7+0x12a>
+				PORTD |= (1 << TX_PIN); // Sets Port D bit 4 (TX) to 1 (Data)
+ 39c:	5c 9a       	sbi	0x0b, 4	; 11
+ 39e:	12 c0       	rjmp	.+36     	; 0x3c4 <__vector_7+0x14e>
+			}else{ // bit = 0
+				PORTD &= ~(1 << TX_PIN); // Sets Port D bit 4 (TX) to 0 (Data)
+ 3a0:	5c 98       	cbi	0x0b, 4	; 11
+ 3a2:	10 c0       	rjmp	.+32     	; 0x3c4 <__vector_7+0x14e>
+			}
+		}
+		else if (send_bit_num == 8){ // Stop bit
+ 3a4:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <send_bit_num>
+ 3a8:	88 30       	cpi	r24, 0x08	; 8
+ 3aa:	11 f4       	brne	.+4      	; 0x3b0 <__vector_7+0x13a>
+			PORTD |= (1 << TX_PIN); // Sets Port D bit 4 (TX) to 1 (Stop condition)
+ 3ac:	5c 9a       	sbi	0x0b, 4	; 11
+ 3ae:	0a c0       	rjmp	.+20     	; 0x3c4 <__vector_7+0x14e>
+		}
+		else if (send_bit_num == 10){ // Finished transmitting the byte (after Stop Bit, there is an additional bit with 5V status)
+ 3b0:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <send_bit_num>
+ 3b4:	8a 30       	cpi	r24, 0x0A	; 10
+ 3b6:	31 f4       	brne	.+12     	; 0x3c4 <__vector_7+0x14e>
+			SWseriale_listen(IDLE_MODE); // Set the bus in IDLE mode
+ 3b8:	80 e0       	ldi	r24, 0x00	; 0
+ 3ba:	0e 94 ab 00 	call	0x156	; 0x156 <SWseriale_listen>
+			SWseriale_prepareToSend(); // Checks if any other byte needs to be sent
+ 3be:	0e 94 b7 00 	call	0x16e	; 0x16e <SWseriale_prepareToSend>
+			return;
+ 3c2:	05 c0       	rjmp	.+10     	; 0x3ce <__vector_7+0x158>
+		}
+		send_bit_num++;
+ 3c4:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <send_bit_num>
+ 3c8:	8f 5f       	subi	r24, 0xFF	; 255
+ 3ca:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <send_bit_num>
+	}
+	
+}
+ 3ce:	ff 91       	pop	r31
+ 3d0:	ef 91       	pop	r30
+ 3d2:	bf 91       	pop	r27
+ 3d4:	af 91       	pop	r26
+ 3d6:	9f 91       	pop	r25
+ 3d8:	8f 91       	pop	r24
+ 3da:	7f 91       	pop	r23
+ 3dc:	6f 91       	pop	r22
+ 3de:	5f 91       	pop	r21
+ 3e0:	4f 91       	pop	r20
+ 3e2:	3f 91       	pop	r19
+ 3e4:	2f 91       	pop	r18
+ 3e6:	0f 90       	pop	r0
+ 3e8:	0f be       	out	0x3f, r0	; 63
+ 3ea:	0f 90       	pop	r0
+ 3ec:	1f 90       	pop	r1
+ 3ee:	18 95       	reti
+
+000003f0 <_exit>:
+ 3f0:	f8 94       	cli
+
+000003f2 <__stop_program>:
+ 3f2:	ff cf       	rjmp	.-2      	; 0x3f2 <__stop_program>
